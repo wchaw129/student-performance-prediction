@@ -1,0 +1,40 @@
+# ----------------------------------
+# Środowiska
+# ----------------------------------
+venv/
+.venv/
+env/
+.conda/
+.direnv/
+
+# ----------------------------------
+# Cache i kompilacja Pythona
+# ----------------------------------
+__pycache__/
+*.pyc
+*.pyd
+*.so
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+pip-log.txt
+
+# ----------------------------------
+# Pliki specyficzne dla IDE
+# ----------------------------------
+.idea/             # PyCharm / IntelliJ
+*.sublime-workspace
+.vscode/           # VS Code
+
+# ----------------------------------
+# Pliki specyficzne dla Jupyter
+# ----------------------------------
+.ipynb_checkpoints/  
+
+# ----------------------------------
+# Dane/Logi
+# ----------------------------------
+/data/
+/logs/
+*.csv
+*.log
