@@ -6,7 +6,7 @@ This project focuses on predicting student academic performance based on socioec
 The primary goal was to build a robust model capable of predicting student scores. Instead of treating subjects (Math, Reading, Writing) in isolation, I performed a statistical analysis to determine if a consolidated "Average Score" could serve as a reliable, lower-dimensional target variable.
 
 ## 🛠️ Tech Stack
-* **Language:** Python 3.x
+* **Language:** Python 
 * **Analysis:** Pandas, NumPy, Statsmodels, Matplotlib, Seaborn
 * **Machine Learning:** Scikit-Learn, CatBoost
 * **Software Engineering:** Modularized code structure, `sklearn.pipeline`, Joblib
