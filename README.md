@@ -1,6 +1,6 @@
 # Student Exam Performance: Statistical Analysis & Predictive Modeling
 
-This project focuses on predicting student academic performance based on socioeconomic and demographic factors. It demonstrates a full Data Science pipeline: from rigorous statistical verification and modular data engineering to advanced machine learning modeling.
+This project focuses on predicting student academic performance based on socioeconomic and demographic factors. 
 
 ## 🎯 Project Objective
 The primary goal was to build a robust model capable of predicting student scores. Instead of treating subjects (Math, Reading, Writing) in isolation, I performed a statistical analysis to determine if a consolidated "Average Score" could serve as a reliable, lower-dimensional target variable.
@@ -14,9 +14,11 @@ The primary goal was to build a robust model capable of predicting student score
 ## 📊 Key Methodology & Statistical Insights
 
 ### 1. Statistical Target Consolidation (Notebook 01)
-Before modeling, I conducted a correlation analysis and statistical tests to verify the relationship between the three exam scores (Math, Reading, Writing).
-* **Observation:** High positive correlation (e.g., Reading & Writing $r \approx 0.95$).
-* **Statistical Decision:** Confirmed that modeling the **Mean Score** is statistically sound. This approach reduces noise, prevents redundant models, and provides a clearer picture of overall academic aptitude.
+Before building the models, I conducted an in-depth statistical analysis to justify the pipeline architecture:
+* **Target Consolidation & Correlation:** I performed a correlation analysis which revealed very strong positive relationships between subjects (e.g., Reading & Writing $r \approx 0.95$).
+* **Normality Testing:** I conducted D’Agostino’s $K^2$ tests and visual inspections via Q-Q plots to verify whether the score distributions met the normality assumptions required for ANOVA.
+* **ANOVA (Analysis of Variance):** I used ANOVA tests to determine if categorical features like `race/ethnicity` or `parental level of education` had a statistically significant impact on the mean scores. The results confirmed that these features are strong predictors, justifying their inclusion in the ML models.
+* **Conclusion:** The statistical evidence (high correlation and similar distribution patterns) supported the use of the **Average Score** as a global indicator of academic performance, reducing target dimensionality without losing significant information.
 
 ### 2. Feature Engineering & Pipelines
 To ensure production-ready code, I implemented a custom preprocessing module (`src/preprocessing.py`) using `ColumnTransformer`:
@@ -30,6 +32,12 @@ I compared two distinct modeling approaches:
 * **OLS (Ordinary Least Squares):** Utilized for baseline performance and to analyze feature significance (p-values) and coefficients, providing interpretability.
 * **CatBoost Regressor:** Leveraged for its superior handling of categorical data and gradient boosting efficiency.
     * *Optimization:* Implemented Early Stopping to prevent overfitting.
+ 
+### 4. Key findings
+I compared two distinct modeling approaches:
+* **The CatBoost model slightly outperformed the baseline OLS, capturing non-linear relationships between socioeconomic factors and student success.
+* **Key performance drivers identified: Test Preparation Course and Lunch Type (socioeconomic proxy).
+
 
 ## 📁 Project Structure
 ```text
@@ -42,4 +50,6 @@ I compared two distinct modeling approaches:
 │   └── __init__.py              # Package initialization
 ├── data/
 │   └── StudentsPerformance.csv  # Raw dataset
+├── models/
+│   └── student_performance_pipeline.joblib  # CatBoost model result
 └── README.md
